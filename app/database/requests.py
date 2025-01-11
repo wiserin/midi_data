@@ -21,3 +21,13 @@ def add_links(links: list) -> bool:
     except Exception as e:
         print(e)
         return False
+
+
+def get_link(link_id: int) -> str | bool:
+    try:
+        response = s.query(Link.link).where(Link.id == link_id)[0][0]
+        return response
+
+    except Exception as e:
+        print(e)
+        return False
