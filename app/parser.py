@@ -46,12 +46,14 @@ class ParseLinks:
         """
         Парсит ссылки на страницы файлов и сохраняет их в БД
 
-        :param count: Целевое количество скачаных файлов
+        :param count: Целевое количество страниц для парсинга
         """
 
         for i in range(1, count + 1):
             html = self.get_html(f'https://bitmidi.com/?page={i}')
             self.get_links(html)
+            if i % 50 == 0:
+                print(f'Скопировано: {i} страниц')
 
 
 
