@@ -58,8 +58,6 @@ class ParseLinks:
 
 
 class ParseMidi(ParseLinks):
-    def __init__(self):
-        super().__init__()
 
     def get_file_link(self, html) -> str:
         """
