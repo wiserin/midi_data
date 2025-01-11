@@ -3,5 +3,5 @@ from app.database.models import start_db
 
 if __name__ == "__main__":
     start_db
-    parser = ParseLinks()
-    parser.parse(6667)
+    parser = ParseMidi
+    parser.parse_midi(100000)
