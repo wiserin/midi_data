@@ -79,16 +79,20 @@ class ParseMidi(ParseLinks):
         :param count: Целевое количество скачаных файлов
         """
 
-        for midi in range(1, count + 1):
-            link = db.get_link(midi)
-            url = f'https://bitmidi.com{link}'
-            html = self.get_html(url)
-            link = self.get_file_link(html)
-            response = requests.get(f'https://bitmidi.com{link}', stream=True)
+        for midi in range(61500, count + 1):
+            try:
+                link = db.get_link(midi)
+                url = f'https://bitmidi.com{link}'
+                html = self.get_html(url)
+                link = self.get_file_link(html)
+                response = requests.get(f'https://bitmidi.com{link}', stream=True)
 
-            with open(f'data{link}', "wb") as f:
-                for chunk in response.iter_content(chunk_size=8192):
-                    f.write(chunk)
+                with open(f'data{link}', "wb") as f:
+                    for chunk in response.iter_content(chunk_size=8192):
+                        f.write(chunk)
 
-            if midi % 25 == 0:
-                print(f'Скачано: {midi}')
+                if midi % 25 == 0:
+                    print(f'Скачано: {midi}')
+
+            except Exception as e:
+                print(e)
